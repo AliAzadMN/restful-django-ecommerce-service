@@ -1,8 +1,10 @@
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.db import models
+from django.utils import timezone
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, password=None)
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email & password.
         """
@@ -27,3 +29,23 @@ class CustomUserManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
+
+
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(
+        verbose_name="email address",
+        max_length=255,
+        unique=True,
+    )
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(default=timezone.now)
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
+    
