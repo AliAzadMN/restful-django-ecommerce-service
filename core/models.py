@@ -25,7 +25,7 @@ class CustomUserManager(BaseUserManager):
             email=email,
             password=password,
         )
-        user.is_admin= True
+        user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
@@ -38,7 +38,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
 
     objects = CustomUserManager()
