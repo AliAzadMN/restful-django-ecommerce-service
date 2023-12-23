@@ -2,6 +2,8 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.conf import settings
 
+from .validators import validate_id_card_number
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -38,3 +40,15 @@ class Comment(models.Model):
     body = models.TextField()
     datetime_created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=2, choices=COMMENT_STATUS, default=COMMENT_STATUS_APPROVED)
+
+
+class Customer(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    birthdate = models.DateField(blank=True, null=True)
+    id_card_number = models.CharField(
+        blank=True,
+        max_length=10,
+        validators=[validate_id_card_number],
+    )
