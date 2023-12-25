@@ -52,3 +52,14 @@ class Customer(models.Model):
         max_length=10,
         validators=[validate_id_card_number],
     )
+
+
+class Address(models.Model):
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, primary_key=True)
+    province = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Address"
+        verbose_name_plural = "Addresses"
