@@ -154,6 +154,10 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'SET_PASSWORD_RETYPE': True,
+    'SERIALIZERS': {
+        'user': 'core.serializers.UserSerializer', 
+        'current_user': 'core.serializers.UserSerializer',
+    }
 }
 
 SIMPLE_JWT = {
