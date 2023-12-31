@@ -153,8 +153,10 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/reset_password/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
     'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
+        'user_admin_create': 'core.serializers.UserAdminCreateSerializer',
         'user': 'core.serializers.UserSerializer', 
         'current_user': 'core.serializers.UserSerializer',
     }
