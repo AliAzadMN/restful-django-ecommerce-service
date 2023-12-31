@@ -4,7 +4,7 @@ from djoser.serializers import UserCreatePasswordRetypeSerializer
 
 class UserSerializer(DjoserUserSerializer):
     class Meta(DjoserUserSerializer.Meta):
-        fields = ['id', 'email', 'is_superuser', 'is_staff', 'date_joined', ]
+        fields = ['id', 'email', 'date_joined', ]
 
 
 class UserAdminCreateSerializer(UserCreatePasswordRetypeSerializer):
