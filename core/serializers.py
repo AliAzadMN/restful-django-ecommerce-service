@@ -7,6 +7,11 @@ class UserSerializer(DjoserUserSerializer):
         fields = ['id', 'email', 'date_joined', ]
 
 
+class UserAdminSerializer(DjoserUserSerializer):
+    class Meta(DjoserUserSerializer.Meta):
+        fields = ['id', 'email', 'is_staff', 'date_joined',]
+
+
 class UserAdminCreateSerializer(UserCreatePasswordRetypeSerializer):
     class Meta(UserCreatePasswordRetypeSerializer.Meta):
         fields = ['email', 'is_staff', 'password', ]

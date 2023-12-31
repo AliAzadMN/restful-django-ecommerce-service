@@ -157,6 +157,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
         'user_admin_create': 'core.serializers.UserAdminCreateSerializer',
+        'user_admin': 'core.serializers.UserAdminSerializer',
         'user': 'core.serializers.UserSerializer', 
         'current_user': 'core.serializers.UserSerializer',
     }

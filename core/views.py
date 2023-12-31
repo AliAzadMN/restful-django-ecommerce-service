@@ -69,6 +69,8 @@ class UserViewSet(ListModelMixin,
             if settings.USER_CREATE_PASSWORD_RETYPE:
                 return settings.SERIALIZERS.user_create_password_retype
             return settings.SERIALIZERS.user_create
+        elif self.request.method == 'GET' and self.request.user.is_staff:
+            return settings.SERIALIZERS.user_admin
         elif self.action == "destroy" or (
             self.action == "me" and self.request and self.request.method == "DELETE"
         ):
